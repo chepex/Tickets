@@ -21,7 +21,14 @@
                 <ui:include src="/appmenu.xhtml"/>
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="50"/>
+            <p:layoutUnit position="west" size="250">
+                <h:form id="menuForm2">
+                    <p:growl id="messages"/>
+                    <p:menu model="#{menuBean.modulos}"/> 
+                    
+                </h:form>
+             
+            </p:layoutUnit>
             <p:layoutUnit position="east" size="50"/>
 
             <p:layoutUnit position="south" size="60">

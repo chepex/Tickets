@@ -8,24 +8,8 @@
 
     <ui:composition>
         <h:form id="menuForm">
-            <p:menubar>
-                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.Maintenance}">
-                    <p:menuitem value="Calificacion" outcome="/calificacion/index" />
-                    <p:menuitem value="Categoria" outcome="/categoria/index" />
-                    <p:menuitem value="Cias" outcome="/cias/index" />
-                    <p:menuitem value="Clientes" outcome="/clientes/index" />
-                    <p:menuitem value="Menu" outcome="/menu/index" />
-                    <p:menuitem value="Modulo" outcome="/modulo/index" />
-                    <p:menuitem value="Requerimiento" outcome="/requerimiento/index" />
-                    <p:menuitem value="Rol" outcome="/rol/index" />
-                    <p:menuitem value="RolesXMenu" outcome="/rolesXMenu/index" />
-                    <p:menuitem value="Solucion" outcome="/solucion/index" />
-                    <p:menuitem value="Status" outcome="/status/index" />
-                    <p:menuitem value="Tecnico" outcome="/tecnico/index" />
-                    <p:menuitem value="Usuarios" outcome="/usuarios/index" />
-                </p:submenu>
-            </p:menubar>
+             
+             <p:menubar model="#{menuBean.menus}"/>            
         </h:form>
     </ui:composition>
 

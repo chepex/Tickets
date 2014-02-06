@@ -6,9 +6,11 @@
 
 package com.entities;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,5 +29,12 @@ public class MenuFacade extends AbstractFacade<Menu> {
     public MenuFacade() {
         super(Menu.class);
     }
+    
+    @Override
+    public List<Menu> findAll() {
+       	TypedQuery<Menu> q;
+        q = em.createNamedQuery("Menu.findAll", Menu.class );
+        return q.getResultList();
+    } 
     
 }
