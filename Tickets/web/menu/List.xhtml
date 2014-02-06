@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MenuListForm">
+
+        <p:panel header="#{myBundle.ListMenuTitle}">
+            <p:dataTable id="datalist" value="#{menuController.items}" var="item"
+                         selectionMode="single" selection="#{menuController.selected}"
+                         rowKey="#{item.idMenu}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.idMenu}" filterBy="#{item.idMenu}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMenuTitle_idMenu}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idMenu}"/>
+                </p:column>
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMenuTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+                <p:column sortBy="#{item.direccion}" filterBy="#{item.direccion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMenuTitle_direccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.direccion}"/>
+                </p:column>
+                <p:column sortBy="#{item.corelativo}" filterBy="#{item.corelativo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMenuTitle_corelativo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.corelativo}"/>
+                </p:column>
+                <p:column sortBy="#{item.idModulo.idModulo}" filterBy="#{item.idModulo.idModulo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMenuTitle_idModulo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idModulo.idModulo}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{menuController.prepareCreate}" update=":MenuCreateForm" oncomplete="MenuCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":MenuViewForm" oncomplete="MenuViewDialog.show()" disabled="#{empty menuController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MenuEditForm" oncomplete="MenuEditDialog.show()" disabled="#{empty menuController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{menuController.delete}" update=":growl,datalist" disabled="#{empty menuController.selected}">
+                            <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

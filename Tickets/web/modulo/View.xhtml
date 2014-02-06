@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModuloViewDlg" widgetVar="ModuloViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewModuloTitle}" closeOnEscape="true">
+
+            <h:form id="ModuloViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{moduloController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewModuloLabel_idModulo}"/>
+                        <h:outputText value="#{moduloController.selected.idModulo}" title="#{myBundle.ViewModuloTitle_idModulo}"/>
+
+                        <h:outputText value="#{myBundle.ViewModuloLabel_nombre}"/>
+                        <h:outputText value="#{moduloController.selected.nombre}" title="#{myBundle.ViewModuloTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewModuloLabel_status}"/>
+                        <h:outputText value="#{moduloController.selected.status}" title="#{myBundle.ViewModuloTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="ModuloViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

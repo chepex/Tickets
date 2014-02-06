@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TecnicoViewDlg" widgetVar="TecnicoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTecnicoTitle}" closeOnEscape="true">
+
+            <h:form id="TecnicoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tecnicoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_idTecnico}"/>
+                        <h:outputText value="#{tecnicoController.selected.idTecnico}" title="#{myBundle.ViewTecnicoTitle_idTecnico}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_nombres}"/>
+                        <h:outputText value="#{tecnicoController.selected.nombres}" title="#{myBundle.ViewTecnicoTitle_nombres}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_apellidos}"/>
+                        <h:outputText value="#{tecnicoController.selected.apellidos}" title="#{myBundle.ViewTecnicoTitle_apellidos}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_tel}"/>
+                        <h:outputText value="#{tecnicoController.selected.tel}" title="#{myBundle.ViewTecnicoTitle_tel}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_correo}"/>
+                        <h:outputText value="#{tecnicoController.selected.correo}" title="#{myBundle.ViewTecnicoTitle_correo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_status}"/>
+                        <h:outputText value="#{tecnicoController.selected.status}" title="#{myBundle.ViewTecnicoTitle_status}"/>
+
+                        <h:outputText value="#{myBundle.ViewTecnicoLabel_idUsuario}"/>
+                        <h:outputText value="#{tecnicoController.selected.idUsuario.idUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="TecnicoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequerimientoViewDlg" widgetVar="RequerimientoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewRequerimientoTitle}" closeOnEscape="true">
+
+            <h:form id="RequerimientoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requerimientoController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idRequerimiento}"/>
+                        <h:outputText value="#{requerimientoController.selected.idRequerimiento}" title="#{myBundle.ViewRequerimientoTitle_idRequerimiento}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_titulo}"/>
+                        <h:outputText value="#{requerimientoController.selected.titulo}" title="#{myBundle.ViewRequerimientoTitle_titulo}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_descripcion}"/>
+                        <h:outputText value="#{requerimientoController.selected.descripcion}" title="#{myBundle.ViewRequerimientoTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_descCliente}"/>
+                        <h:outputText value="#{requerimientoController.selected.descCliente}" title="#{myBundle.ViewRequerimientoTitle_descCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_descTecnico}"/>
+                        <h:outputText value="#{requerimientoController.selected.descTecnico}" title="#{myBundle.ViewRequerimientoTitle_descTecnico}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idSolucion}"/>
+                        <h:outputText value="#{requerimientoController.selected.idSolucion.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idCategoria}"/>
+                        <h:outputText value="#{requerimientoController.selected.idCategoria.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idStatus}"/>
+                        <h:outputText value="#{requerimientoController.selected.idStatus.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idCliente}"/>
+                        <h:outputText value="#{requerimientoController.selected.idCliente.idCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idCodCia}"/>
+                        <h:outputText value="#{requerimientoController.selected.idCodCia.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idTecnico}"/>
+                        <h:outputText value="#{requerimientoController.selected.idTecnico.idTecnico}"/>
+
+                        <h:outputText value="#{myBundle.ViewRequerimientoLabel_idCalificacion}"/>
+                        <h:outputText value="#{requerimientoController.selected.idCalificacion.descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="RequerimientoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientesViewDlg" widgetVar="ClientesViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewClientesTitle}" closeOnEscape="true">
+
+            <h:form id="ClientesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clientesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_idCliente}"/>
+                        <h:outputText value="#{clientesController.selected.idCliente}" title="#{myBundle.ViewClientesTitle_idCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_nombres}"/>
+                        <h:outputText value="#{clientesController.selected.nombres}" title="#{myBundle.ViewClientesTitle_nombres}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_apellidos}"/>
+                        <h:outputText value="#{clientesController.selected.apellidos}" title="#{myBundle.ViewClientesTitle_apellidos}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_tel}"/>
+                        <h:outputText value="#{clientesController.selected.tel}" title="#{myBundle.ViewClientesTitle_tel}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_mail}"/>
+                        <h:outputText value="#{clientesController.selected.mail}" title="#{myBundle.ViewClientesTitle_mail}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_status}"/>
+                        <h:outputText value="#{clientesController.selected.status}" title="#{myBundle.ViewClientesTitle_status}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_direccion}"/>
+                        <h:outputText value="#{clientesController.selected.direccion}" title="#{myBundle.ViewClientesTitle_direccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_logitud}"/>
+                        <h:outputText value="#{clientesController.selected.logitud}" title="#{myBundle.ViewClientesTitle_logitud}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_latitud}"/>
+                        <h:outputText value="#{clientesController.selected.latitud}" title="#{myBundle.ViewClientesTitle_latitud}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_idUsuario}"/>
+                        <h:outputText value="#{clientesController.selected.idUsuario.idUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="ClientesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

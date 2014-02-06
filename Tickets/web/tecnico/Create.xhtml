@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TecnicoCreateDlg" widgetVar="TecnicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTecnicoTitle}" closeOnEscape="true">
+
+            <h:form id="TecnicoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateTecnicoLabel_idTecnico}" for="idTecnico" />
+                        <p:inputText id="idTecnico" value="#{tecnicoController.selected.idTecnico}" title="#{myBundle.CreateTecnicoTitle_idTecnico}" required="true" requiredMessage="#{myBundle.CreateTecnicoRequiredMessage_idTecnico}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{tecnicoController.selected.nombres}" title="#{myBundle.CreateTecnicoTitle_nombres}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{tecnicoController.selected.apellidos}" title="#{myBundle.CreateTecnicoTitle_apellidos}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{tecnicoController.selected.tel}" title="#{myBundle.CreateTecnicoTitle_tel}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{tecnicoController.selected.correo}" title="#{myBundle.CreateTecnicoTitle_correo}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{tecnicoController.selected.status}" title="#{myBundle.CreateTecnicoTitle_status}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateTecnicoLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{tecnicoController.selected.idUsuario}"  converter="usuariosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.items}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"
+                                           itemLabel="#{idUsuarioItem.idUsuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tecnicoController.saveNew}" value="#{myBundle.Save}" update="display,:TecnicoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TecnicoCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="TecnicoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

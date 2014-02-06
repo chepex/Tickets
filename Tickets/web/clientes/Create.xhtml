@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientesCreateDlg" widgetVar="ClientesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateClientesTitle}" closeOnEscape="true">
+
+            <h:form id="ClientesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateClientesLabel_idCliente}" for="idCliente" />
+                        <p:inputText id="idCliente" value="#{clientesController.selected.idCliente}" title="#{myBundle.CreateClientesTitle_idCliente}" required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_idCliente}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{clientesController.selected.nombres}" title="#{myBundle.CreateClientesTitle_nombres}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{clientesController.selected.apellidos}" title="#{myBundle.CreateClientesTitle_apellidos}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{clientesController.selected.tel}" title="#{myBundle.CreateClientesTitle_tel}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{clientesController.selected.mail}" title="#{myBundle.CreateClientesTitle_mail}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{clientesController.selected.status}" title="#{myBundle.CreateClientesTitle_status}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{clientesController.selected.direccion}" title="#{myBundle.CreateClientesTitle_direccion}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_logitud}" for="logitud" />
+                        <p:inputText id="logitud" value="#{clientesController.selected.logitud}" title="#{myBundle.CreateClientesTitle_logitud}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_latitud}" for="latitud" />
+                        <p:inputText id="latitud" value="#{clientesController.selected.latitud}" title="#{myBundle.CreateClientesTitle_latitud}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{clientesController.selected.idUsuario}"  converter="usuariosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.items}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"
+                                           itemLabel="#{idUsuarioItem.idUsuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clientesController.saveNew}" value="#{myBundle.Save}" update="display,:ClientesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ClientesCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ClientesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

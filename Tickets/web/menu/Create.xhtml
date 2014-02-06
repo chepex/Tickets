@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuCreateDlg" widgetVar="MenuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateMenuTitle}" closeOnEscape="true">
+
+            <h:form id="MenuCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateMenuLabel_idMenu}" for="idMenu" />
+                        <p:inputText id="idMenu" value="#{menuController.selected.idMenu}" title="#{myBundle.CreateMenuTitle_idMenu}" required="true" requiredMessage="#{myBundle.CreateMenuRequiredMessage_idMenu}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateMenuLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{menuController.selected.descripcion}" title="#{myBundle.CreateMenuTitle_descripcion}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateMenuLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{menuController.selected.direccion}" title="#{myBundle.CreateMenuTitle_direccion}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateMenuLabel_corelativo}" for="corelativo" />
+                        <p:inputText id="corelativo" value="#{menuController.selected.corelativo}" title="#{myBundle.CreateMenuTitle_corelativo}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateMenuLabel_idModulo}" for="idModulo" />
+                        <p:selectOneMenu id="idModulo" value="#{menuController.selected.idModulo}"  converter="moduloConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{moduloController.items}"
+                                           var="idModuloItem"
+                                           itemValue="#{idModuloItem}"
+                                           itemLabel="#{idModuloItem.idModulo.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuController.saveNew}" value="#{myBundle.Save}" update="display,:MenuListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MenuCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="MenuCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

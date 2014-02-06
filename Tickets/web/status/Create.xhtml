@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StatusCreateDlg" widgetVar="StatusCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateStatusTitle}" closeOnEscape="true">
+
+            <h:form id="StatusCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateStatusLabel_idStatus}" for="idStatus" />
+                        <p:inputText id="idStatus" value="#{statusController.selected.idStatus}" title="#{myBundle.CreateStatusTitle_idStatus}" required="true" requiredMessage="#{myBundle.CreateStatusRequiredMessage_idStatus}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateStatusLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{statusController.selected.descripcion}" title="#{myBundle.CreateStatusTitle_descripcion}" size="45" maxlength="45"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{statusController.saveNew}" value="#{myBundle.Save}" update="display,:StatusListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,StatusCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="StatusCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequerimientoCreateDlg" widgetVar="RequerimientoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateRequerimientoTitle}" closeOnEscape="true">
+
+            <h:form id="RequerimientoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateRequerimientoLabel_idRequerimiento}" for="idRequerimiento" />
+                        <p:inputText id="idRequerimiento" value="#{requerimientoController.selected.idRequerimiento}" title="#{myBundle.CreateRequerimientoTitle_idRequerimiento}" required="true" requiredMessage="#{myBundle.CreateRequerimientoRequiredMessage_idRequerimiento}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_titulo}" for="titulo" />
+                        <p:inputText id="titulo" value="#{requerimientoController.selected.titulo}" title="#{myBundle.CreateRequerimientoTitle_titulo}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{requerimientoController.selected.descripcion}" title="#{myBundle.CreateRequerimientoTitle_descripcion}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_descCliente}" for="descCliente" />
+                        <p:inputText id="descCliente" value="#{requerimientoController.selected.descCliente}" title="#{myBundle.CreateRequerimientoTitle_descCliente}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_descTecnico}" for="descTecnico" />
+                        <p:inputText id="descTecnico" value="#{requerimientoController.selected.descTecnico}" title="#{myBundle.CreateRequerimientoTitle_descTecnico}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idSolucion}" for="idSolucion" />
+                        <p:selectOneMenu id="idSolucion" value="#{requerimientoController.selected.idSolucion}"  converter="solucionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{solucionController.items}"
+                                           var="idSolucionItem"
+                                           itemValue="#{idSolucionItem}"
+                                           itemLabel="#{idSolucionItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idCategoria}" for="idCategoria" />
+                        <p:selectOneMenu id="idCategoria" value="#{requerimientoController.selected.idCategoria}"  converter="categoriaConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoriaController.items}"
+                                           var="idCategoriaItem"
+                                           itemValue="#{idCategoriaItem}"
+                                           itemLabel="#{idCategoriaItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idStatus}" for="idStatus" />
+                        <p:selectOneMenu id="idStatus" value="#{requerimientoController.selected.idStatus}"  converter="statusConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{statusController.items}"
+                                           var="idStatusItem"
+                                           itemValue="#{idStatusItem}"
+                                           itemLabel="#{idStatusItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idCliente}" for="idCliente" />
+                        <p:selectOneMenu id="idCliente" value="#{requerimientoController.selected.idCliente}"  converter="clientesConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientesController.items}"
+                                           var="idClienteItem"
+                                           itemValue="#{idClienteItem}"
+                                           itemLabel="#{idClienteItem.idCliente.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idCodCia}" for="idCodCia" />
+                        <p:selectOneMenu id="idCodCia" value="#{requerimientoController.selected.idCodCia}"  converter="ciasConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ciasController.items}"
+                                           var="idCodCiaItem"
+                                           itemValue="#{idCodCiaItem}"
+                                           itemLabel="#{idCodCiaItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idTecnico}" for="idTecnico" />
+                        <p:selectOneMenu id="idTecnico" value="#{requerimientoController.selected.idTecnico}"  converter="tecnicoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tecnicoController.items}"
+                                           var="idTecnicoItem"
+                                           itemValue="#{idTecnicoItem}"
+                                           itemLabel="#{idTecnicoItem.idTecnico.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRequerimientoLabel_idCalificacion}" for="idCalificacion" />
+                        <p:selectOneMenu id="idCalificacion" value="#{requerimientoController.selected.idCalificacion}"  converter="calificacionConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{calificacionController.items}"
+                                           var="idCalificacionItem"
+                                           itemValue="#{idCalificacionItem}"
+                                           itemLabel="#{idCalificacionItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{requerimientoController.saveNew}" value="#{myBundle.Save}" update="display,:RequerimientoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RequerimientoCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="RequerimientoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

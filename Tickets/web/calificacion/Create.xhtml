@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CalificacionCreateDlg" widgetVar="CalificacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateCalificacionTitle}" closeOnEscape="true">
+
+            <h:form id="CalificacionCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateCalificacionLabel_idCalificacion}" for="idCalificacion" />
+                        <p:inputText id="idCalificacion" value="#{calificacionController.selected.idCalificacion}" title="#{myBundle.CreateCalificacionTitle_idCalificacion}" required="true" requiredMessage="#{myBundle.CreateCalificacionRequiredMessage_idCalificacion}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateCalificacionLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{calificacionController.selected.descripcion}" title="#{myBundle.CreateCalificacionTitle_descripcion}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateCalificacionLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{calificacionController.selected.status}" title="#{myBundle.CreateCalificacionTitle_status}" size="45" maxlength="45"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{calificacionController.saveNew}" value="#{myBundle.Save}" update="display,:CalificacionListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CalificacionCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="CalificacionCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

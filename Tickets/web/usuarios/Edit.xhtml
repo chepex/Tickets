@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuariosEditDlg" widgetVar="UsuariosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUsuariosTitle}" closeOnEscape="true">
+
+            <h:form id="UsuariosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{usuariosController.selected != null}">
+
+                        <h:outputLabel value="#{myBundle.EditUsuariosLabel_idUsuario}" for="idUsuario" />
+                        <h:outputText id="idUsuario" value="#{usuariosController.selected.idUsuario}" />
+
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_user}" for="user" />
+                        <p:inputText id="user" value="#{usuariosController.selected.user}" title="#{myBundle.EditUsuariosTitle_user}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_pass}" for="pass" />
+                        <p:inputText id="pass" value="#{usuariosController.selected.pass}" title="#{myBundle.EditUsuariosTitle_pass}" size="45" maxlength="45"/>
+
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_idRol}" for="idRol" />
+                        <p:selectOneMenu id="idRol" value="#{usuariosController.selected.idRol}"  converter="rolConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{rolController.items}"
+                                           var="idRolItem"
+                                           itemValue="#{idRolItem}"
+                                           itemLabel="#{idRolItem.idRol.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuariosController.save}" value="#{myBundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuariosEditDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuariosEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RolesXMenuCreateDlg" widgetVar="RolesXMenuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateRolesXMenuTitle}" closeOnEscape="true">
+
+            <h:form id="RolesXMenuCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{myBundle.CreateRolesXMenuLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{rolesXMenuController.selected.id}" title="#{myBundle.CreateRolesXMenuTitle_id}" required="true" requiredMessage="#{myBundle.CreateRolesXMenuRequiredMessage_id}"/>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRolesXMenuLabel_idMenu}" for="idMenu" />
+                        <p:selectOneMenu id="idMenu" value="#{rolesXMenuController.selected.idMenu}"  converter="menuConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{menuController.items}"
+                                           var="idMenuItem"
+                                           itemValue="#{idMenuItem}"
+                                           itemLabel="#{idMenuItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateRolesXMenuLabel_idRol}" for="idRol" />
+                        <p:selectOneMenu id="idRol" value="#{rolesXMenuController.selected.idRol}"  converter="rolConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{rolController.items}"
+                                           var="idRolItem"
+                                           itemValue="#{idRolItem}"
+                                           itemLabel="#{idRolItem.idRol.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{rolesXMenuController.saveNew}" value="#{myBundle.Save}" update="display,:RolesXMenuListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,RolesXMenuCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="RolesXMenuCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
